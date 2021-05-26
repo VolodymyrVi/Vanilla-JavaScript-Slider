@@ -4,13 +4,15 @@
     box-sizing: border-box;
 }
 html{
-    font-family: 'Monserrat' sans-serif;
+    font-family: 'Monserrat', sans-serif;
     font-size: 20px;
     color: white;
 }
 section{
     height: 100vh;
     width: 100%;
+    position: relative;
+   overflow-x: hidden;
 }
 .slider{
     height: 100%;
@@ -22,7 +24,23 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-
+    position: absolute;
+    /* z-index: -1; */
+    background-size: cover;
+    transform: translateX(100%);
+}
+.slide.active{
+    transform: translateX(00%);
+}
+.slide::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.459);
+    z-index: -1;
 }
 .slide-1{
     background-image: url(../img/1.jpg);
@@ -35,4 +53,25 @@ section{
 }
 .slide-4{
     background-image: url(../img/4.jpg);
+}
+/* buttons */
+.buttons{
+    position: absolute;
+    z-index: 5;
+    bottom: 0;
+    right: 0;
+    height: auto;
+    color: black;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 50px;
+}
+.buttons div{
+    cursor: pointer;
+    pointer-events: all;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.287);
+}
+.buttons div:hover{
+    background-color: white;
 }
