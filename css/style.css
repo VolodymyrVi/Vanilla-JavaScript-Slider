@@ -30,7 +30,11 @@ section{
     transform: translateX(100%);
 }
 .slide.active{
-    transform: translateX(00%);
+    transform: translateX(0%);
+}
+.slide.top{
+    transition: 0.4s ease transform;
+    z-index: 3;
 }
 .slide::after{
     content: '';
@@ -54,6 +58,8 @@ section{
 .slide-4{
     background-image: url(../img/4.jpg);
 }
+
+
 /* buttons */
 .buttons{
     position: absolute;

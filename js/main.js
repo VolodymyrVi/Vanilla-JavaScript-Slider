@@ -33,6 +33,9 @@ function getPosition(){
         }else{
             slide.style.transform = 'translateX(100%)';
         }
+        slide.addEventListener('transitionend', () =>{
+            slide.classList.remove('top');
+        }) 
     })
 }
 
@@ -49,13 +52,33 @@ function getNextSlide(){
     const current = document.querySelector('.slide.active');
     const [next, prev] = getNextPrev();
 
+    if(current.classList.contains('top')){
+        return;
+    }
+
     current.classList.add('top');
     next.classList.add('top')
     current.classList.remove('active');
-    current.style.transform = 'translate(-100%)';
+    current.style.transform = 'translateX(-100%)';
     next.classList.add('active');
-    next.style.transform = 'translate(0)';
+    next.style.transform = 'translateX(0)';
+
+    getPosition();
 }
 function getPrevSlide(){
-    console.log('getting prev Slide');
+    const current = document.querySelector('.slide.active');
+    const [next, prev] = getNextPrev();
+
+    if(current.classList.contains('top')){
+        return;
+    }
+
+    current.classList.add('top');
+    prev.classList.add('top');
+    current.classList.remove('active');
+    current.style.transform = 'translateX(100%)';
+    prev.classList.add('active');
+    prev.style.transform = 'translateX(0)';
+    getPosition();
 }
+
