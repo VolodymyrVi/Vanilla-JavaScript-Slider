@@ -1,6 +1,7 @@
 const slides = Array.from(document.querySelectorAll('.slide'));
 const slider = document.querySelector('slider');
 const buttons = document.querySelectorAll('.buttons div');
+const dotEl = document.querySelector('.dots');
 
 function getNextPrev(){
     const activeSlide = document.querySelector('.slide.active');
@@ -82,3 +83,20 @@ function getPrevSlide(){
     getPosition();
 }
 
+/* dots functionality */
+
+slides.forEach(slide =>{
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    dotEl.appendChild(dot);
+})
+
+function activeDot(){
+    const allDots = document.querySelectorAll('.dots .dot');
+    const activeSlide = document.querySelector('.slide.active');
+    const activeIndex = slides.indexOf(activeSlide);
+
+    allDots[activeIndex].classList.add('active');
+
+}
+activeDot()
