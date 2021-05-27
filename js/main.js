@@ -65,6 +65,7 @@ function getNextSlide(){
     next.style.transform = 'translateX(0)';
 
     getPosition();
+    getActiveDot();
 }
 function getPrevSlide(){
     const current = document.querySelector('.slide.active');
@@ -81,6 +82,7 @@ function getPrevSlide(){
     prev.classList.add('active');
     prev.style.transform = 'translateX(0)';
     getPosition();
+    getActiveDot();
 }
 
 /* dots functionality */
@@ -91,12 +93,35 @@ slides.forEach(slide =>{
     dotEl.appendChild(dot);
 })
 
-function activeDot(){
+function getActiveDot(){
     const allDots = document.querySelectorAll('.dots .dot');
     const activeSlide = document.querySelector('.slide.active');
     const activeIndex = slides.indexOf(activeSlide);
 
+    allDots.forEach(dot =>{
+        dot.classList.remove('active');
+    })
+
     allDots[activeIndex].classList.add('active');
 
 }
-activeDot()
+
+function functionalDots(){
+    const allDots = document.querySelectorAll('.dots .dot');
+    allDots.forEach((dot, index) => {
+        dot.addEventListener('click', () =>{
+        getDotSlide(index);            
+        })
+    })
+}
+
+function getDotSlide(index){
+    slides.forEach(slide =>{
+        slide.classList.remove('active');
+    });
+    slides[index].classList.add('active');
+    getPosition();
+    getActiveDot();
+}
+getActiveDot();
+functionalDots();
