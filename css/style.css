@@ -82,7 +82,6 @@ section{
     background-color: white;
 }
 
-
 /* dots style */
 .dots{
     z-index: 5;
@@ -99,9 +98,15 @@ section{
     border-radius: 50%;
     margin-left: 5px;
     cursor: pointer;
-    transition: 0.3s ease wid;
+    transition: 0.3s ease;
 }
 .dots .dot.active{
     background-color: white;
     width: 30px;
+}
+@media (max-width: 768px){
+    .dots{
+        left: 0;
+        transform: translateX(0);
+    }
 }

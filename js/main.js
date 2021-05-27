@@ -2,6 +2,7 @@ const slides = Array.from(document.querySelectorAll('.slide'));
 const slider = document.querySelector('slider');
 const buttons = document.querySelectorAll('.buttons div');
 const dotEl = document.querySelector('.dots');
+let timeoutId;
 
 function getNextPrev(){
     const activeSlide = document.querySelector('.slide.active');
@@ -50,6 +51,7 @@ buttons.forEach(button =>{
 })
 
 function getNextSlide(){
+    clearTimeout(timeoutId);
     const current = document.querySelector('.slide.active');
     const [next, prev] = getNextPrev();
 
@@ -66,8 +68,10 @@ function getNextSlide(){
 
     getPosition();
     getActiveDot();
+    autoLoop();
 }
 function getPrevSlide(){
+    clearTimeout(timeoutId);
     const current = document.querySelector('.slide.active');
     const [next, prev] = getNextPrev();
 
@@ -83,6 +87,7 @@ function getPrevSlide(){
     prev.style.transform = 'translateX(0)';
     getPosition();
     getActiveDot();
+    autoLoop();
 }
 
 /* dots functionality */
@@ -116,12 +121,20 @@ function functionalDots(){
 }
 
 function getDotSlide(index){
+    clearTimeout(timeoutId);
     slides.forEach(slide =>{
         slide.classList.remove('active');
     });
     slides[index].classList.add('active');
     getPosition();
     getActiveDot();
+    autoLoop();
+}
+function autoLoop() {
+    timeoutId = setTimeout(() =>{
+        getNextSlide();
+    },5000)
 }
 getActiveDot();
 functionalDots();
+autoLoop();
